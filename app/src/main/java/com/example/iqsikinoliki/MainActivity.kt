@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private var firstPlayer=ArrayList<Int>()
     private var secondPlayer=ArrayList<Int>()
     var winnerPlayer=0
+    private var movement= 0
 
 
 
@@ -94,12 +95,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             clickedView.setBackgroundColor(Color.RED)
             firstPlayer.add(buttonId)
             activePlayer=2
+            movement+=1
 
         } else {
             clickedView.text="O"
             clickedView.setBackgroundColor(Color.GREEN)
             secondPlayer.add(buttonId)
             activePlayer=1
+            movement+=1
 
         }
         clickedView.isEnabled=false
@@ -164,13 +167,21 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         if (secondPlayer.contains(3) && secondPlayer.contains(5) && secondPlayer.contains(7)) {
             winnerPlayer=2
         }
+        if (movement==9 && winnerPlayer!=1 && winnerPlayer!=2) {
+            winnerPlayer==3
+        }
 
         if (winnerPlayer !=0) {
             if (winnerPlayer == 1) {
                 Toast.makeText(this, "X-მა მოიგო!", Toast.LENGTH_LONG).show()
 
 
-            } else {
+            }
+            if (winnerPlayer==3) {
+                Toast.makeText(this, "ყაიმიაა", Toast.LENGTH_LONG).show()
+
+            }
+            else {
                 Toast.makeText(this, "O-მა მოიგო!", Toast.LENGTH_LONG).show()
 
             }
@@ -182,8 +193,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
 
     }
-
-    private fun disableButton() {
+     private fun disableButton() {
         if (winnerPlayer==1 || winnerPlayer==2) {
 
             button1.isEnabled=false
@@ -199,7 +209,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
 
     }
-    private fun resetClick(clickedView: View) {
+     fun resetClick(clickedView: View) {
 
             button1.isEnabled=true
             button2.isEnabled=true
@@ -222,24 +232,21 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             button8.text=""
             button9.text=""
 
-            button1.setBackgroundColor(Color.MAGENTA)
-            button2.setBackgroundColor(Color.MAGENTA)
-            button3.setBackgroundColor(Color.MAGENTA)
-            button4.setBackgroundColor(Color.MAGENTA)
-            button5.setBackgroundColor(Color.MAGENTA)
-            button6.setBackgroundColor(Color.MAGENTA)
-            button7.setBackgroundColor(Color.MAGENTA)
-            button8.setBackgroundColor(Color.MAGENTA)
-            button9.setBackgroundColor(Color.MAGENTA)
+            button1.setBackgroundColor(Color.GRAY)
+            button2.setBackgroundColor(Color.GRAY)
+            button3.setBackgroundColor(Color.GRAY)
+            button4.setBackgroundColor(Color.GRAY)
+            button5.setBackgroundColor(Color.GRAY)
+            button6.setBackgroundColor(Color.GRAY)
+            button7.setBackgroundColor(Color.GRAY)
+            button8.setBackgroundColor(Color.GRAY)
+            button9.setBackgroundColor(Color.GRAY)
 
             winnerPlayer=0
             activePlayer=1
 
             firstPlayer.clear()
             secondPlayer.clear()
-
-
-
 
 
         }
